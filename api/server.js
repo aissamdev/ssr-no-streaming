@@ -4,7 +4,7 @@ import express from 'express'
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
 const port = process.env.PORT || 5173
-const base = process.env.BASE || '/'
+const base = process.env.BASE || '/api'
 
 // Cached production assets
 const templateHtml = isProduction
@@ -35,7 +35,7 @@ if (!isProduction) {
 }
 
 // Serve HTML
-app.use('/api/*', async (req, res) => {
+app.use('*', async (req, res) => {
   try {
     const url = req.originalUrl.replace(base, '')
 
